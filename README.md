@@ -1,4 +1,4 @@
-# 📲 **notification-wise-backend 📲**
+# 📲 **notification-wise-backend **
 
 ### 🌟 **Visão Geral**
 
