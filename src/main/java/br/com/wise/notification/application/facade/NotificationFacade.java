@@ -5,7 +5,6 @@ import br.com.wise.notification.application.usecase.consumer.EmailConsumerUseCas
 import br.com.wise.notification.application.usecase.consumer.SmsConsumerUseCase;
 import br.com.wise.notification.application.usecase.consumer.WhatsAppConsumerUseCase;
 import br.com.wise.notification.application.usecase.notification.SendNotificationUseCase;
-import br.com.wise.notification.domain.NotificationMessage;
 import br.com.wise.notification.domain.StreamMessage;
 import br.com.wise.notification.infrastructure.configurarion.NotificationConfig;
 import br.com.wise.notification.infrastructure.controller.dtos.request.NotificationRequest;

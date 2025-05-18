@@ -13,7 +13,7 @@ import java.util.Map;
 public class NotificationMessage {
     private String templateName;
     private Long patientId;
-    private String receiver;
+    private String recipient;
     private DeliveryMethod deliveryMethod;
     private Map<String, String> additionalInfo;
 }

@@ -13,7 +13,7 @@ input NotificationRequest {
     templateName: String!,
     deliveryMethod: DeliveryMethod!,
     patientId: Int!,
-    receiver: String!,
+    recipient: String!,
     additionalInfo: [KeyValueRequest]
 }
 

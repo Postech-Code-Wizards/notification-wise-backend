@@ -13,7 +13,7 @@ public class NotificationRequestToDomain {
         return NotificationMessage.builder()
                 .templateName(notificationRequest.getTemplateName())
                 .patientId(notificationRequest.getPatientId())
-                .receiver(notificationRequest.getReceiver())
+                .recipient(notificationRequest.getRecipient())
                 .deliveryMethod(notificationRequest.getDeliveryMethod())
                 .additionalInfo(notificationRequest.getAdditionalInfoMap())
                 .build();

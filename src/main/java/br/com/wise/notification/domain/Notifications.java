@@ -7,7 +7,6 @@ import lombok.Builder;
 import lombok.Getter;
 
 import java.time.ZonedDateTime;
-import java.util.Map;
 
 @Builder
 @Getter
@@ -16,6 +15,7 @@ public class Notifications {
     private String id;
     private String templateId;
     private Long patientId;
+    private String recipient;
     private StatusNotification status;
     private ZonedDateTime sentAt;
     private DeliveryMethod deliveryMethod;

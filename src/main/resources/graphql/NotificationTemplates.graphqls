@@ -6,6 +6,17 @@ type NotificationTemplatesResponse {
     updatedAt: String
 }
 
+input CreateNotificationTemplatesRequest {
+    name: String!
+    message: String!
+}
+
+input UpdateNotificationTemplatesRequest {
+    id: ID!
+    name: String!
+    message: String!
+}
+
 extend type Query {
     getNotificationTemplatesById(id: ID!): NotificationTemplatesResponse
     getNotificationTemplatesByName(name: String!): NotificationTemplatesResponse
@@ -13,7 +24,7 @@ extend type Query {
 }
 
 extend type Mutation {
-    createNotificationTemplate(name: String!, message: String!): NotificationTemplatesResponse
-    updateNotificationTemplate(id: ID!, name: String!, message: String!): NotificationTemplatesResponse
+    createNotificationTemplate(createNotificationTemplatesRequest: CreateNotificationTemplatesRequest!): NotificationTemplatesResponse
+    updateNotificationTemplate(updateNotificationTemplatesRequest: UpdateNotificationTemplatesRequest!): NotificationTemplatesResponse
     deleteNotificationTemplate(id: ID!): Boolean
 }

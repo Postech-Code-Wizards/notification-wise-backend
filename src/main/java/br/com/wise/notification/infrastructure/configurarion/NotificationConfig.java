@@ -33,8 +33,8 @@ public class NotificationConfig {
     }
 
     @Bean
-    public Binding emailBinding(Queue smsQueue, DirectExchange directExchange) {
-        return BindingBuilder.bind(smsQueue).to(directExchange).with(EMAIL_ROUTING_KEY);
+    public Binding emailBinding(Queue emailQueue, DirectExchange directExchange) {
+        return BindingBuilder.bind(emailQueue).to(directExchange).with(EMAIL_ROUTING_KEY);
     }
 
     @Bean

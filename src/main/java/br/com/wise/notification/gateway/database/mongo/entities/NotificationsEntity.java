@@ -28,6 +28,9 @@ public class NotificationsEntity {
     @Field("patient_id")
     private Long patientId;
 
+    @Field("recipient")
+    private String recipient;
+
     @Field("status")
     private StatusNotification status;
 

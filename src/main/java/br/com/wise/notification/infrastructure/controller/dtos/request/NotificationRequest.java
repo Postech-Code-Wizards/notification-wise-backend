@@ -1,6 +1,7 @@
 package br.com.wise.notification.infrastructure.controller.dtos.request;
 
 import br.com.wise.notification.domain.enums.DeliveryMethod;
+import java.util.Collections;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,7 +17,7 @@ public class NotificationRequest {
     private String templateName;
     private DeliveryMethod deliveryMethod;
     private Long patientId;
-    private String receiver;
+    private String recipient;
     private List<KeyValueRequest> additionalInfo;
 
     public Map<String, String> getAdditionalInfoMap() {
@@ -24,6 +25,6 @@ public class NotificationRequest {
             return this.additionalInfo.stream()
                     .collect(Collectors.toMap(KeyValueRequest::getKey, KeyValueRequest::getValue));
         }
-        return null;
+        return Collections.emptyMap();
     }
 }

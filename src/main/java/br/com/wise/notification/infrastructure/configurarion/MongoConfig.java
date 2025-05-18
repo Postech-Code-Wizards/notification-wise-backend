@@ -6,9 +6,9 @@ import com.mongodb.ConnectionString;
 import com.mongodb.MongoClientSettings;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
+import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.mongodb.config.AbstractMongoClientConfiguration;
 import org.springframework.data.mongodb.core.convert.MongoCustomConversions;
@@ -37,7 +37,8 @@ public class MongoConfig extends AbstractMongoClientConfiguration {
     @Value("${spring.data.mongodb.auto-index-creation}")
     private boolean autoIndexCreation;
 
-    @Bean
+    @Override
+    @NonNull
     public MongoClient mongoClient() {
         ConnectionString connectionString = new ConnectionString(
                 String.format("mongodb://%s:%s@%s:%d/%s",
@@ -55,11 +56,13 @@ public class MongoConfig extends AbstractMongoClientConfiguration {
     }
 
     @Override
+    @NonNull
     protected String getDatabaseName() {
         return database;
     }
 
-    @Bean
+    @Override
+    @NonNull
     public MongoCustomConversions customConversions() {
         return new MongoCustomConversions(Arrays.asList(
                 new ZonedDateTimeReadConverter(),

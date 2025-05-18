@@ -1,12 +1,15 @@
 package br.com.wise.notification.application.facade;
 
 import br.com.wise.notification.application.facade.converter.NotificationTemplatesDomainToResponse;
-import br.com.wise.notification.application.facade.converter.NotificationTemplatesRequestToDomain;
-import br.com.wise.notification.application.usecase.notificationTemplates.CreateNotificationTemplatesUseCase;
-import br.com.wise.notification.application.usecase.notificationTemplates.DeleteNotificationTemplatesUseCase;
-import br.com.wise.notification.application.usecase.notificationTemplates.RetrieveNotificationTemplatesAllUseCase;
-import br.com.wise.notification.application.usecase.notificationTemplates.RetrieveNotificationTemplatesByIdUseCase;
-import br.com.wise.notification.application.usecase.notificationTemplates.RetrieveNotificationTemplatesByNameUseCase;
+import br.com.wise.notification.application.facade.converter.CreateNotificationTemplatesRequestToDomain;
+import br.com.wise.notification.application.facade.converter.UpdateNotificationTemplatesRequestToDomain;
+import br.com.wise.notification.application.usecase.notificationtemplates.CreateNotificationTemplatesUseCase;
+import br.com.wise.notification.application.usecase.notificationtemplates.DeleteNotificationTemplatesUseCase;
+import br.com.wise.notification.application.usecase.notificationtemplates.RetrieveNotificationTemplatesAllUseCase;
+import br.com.wise.notification.application.usecase.notificationtemplates.RetrieveNotificationTemplatesByIdUseCase;
+import br.com.wise.notification.application.usecase.notificationtemplates.RetrieveNotificationTemplatesByNameUseCase;
+import br.com.wise.notification.infrastructure.controller.dtos.request.CreateNotificationTemplatesRequest;
+import br.com.wise.notification.infrastructure.controller.dtos.request.UpdateNotificationTemplatesRequest;
 import br.com.wise.notification.infrastructure.controller.dtos.response.NotificationTemplatesResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -17,7 +20,8 @@ import java.util.List;
 @RequiredArgsConstructor
 public class NotificationTemplatesFacade {
 
-    private final NotificationTemplatesRequestToDomain notificationTemplatesRequestToDomain;
+    private final CreateNotificationTemplatesRequestToDomain createNotificationTemplatesRequestToDomain;
+    private final UpdateNotificationTemplatesRequestToDomain updateNotificationTemplatesRequestToDomain;
     private final NotificationTemplatesDomainToResponse notificationTemplatesDomainToResponse;
     private final CreateNotificationTemplatesUseCase createNotificationTemplatesUseCase;
     private final RetrieveNotificationTemplatesByIdUseCase retrieveNotificationTemplatesByIdUseCase;
@@ -25,15 +29,15 @@ public class NotificationTemplatesFacade {
     private final DeleteNotificationTemplatesUseCase deleteNotificationTemplatesUseCase;
     private final RetrieveNotificationTemplatesAllUseCase retrieveNotificationTemplatesAllUseCase;
 
-    public NotificationTemplatesResponse create(String name, String message) {
-        var notificationTemplates = notificationTemplatesRequestToDomain.convert(name, message);
+    public NotificationTemplatesResponse create(CreateNotificationTemplatesRequest createNotificationTemplatesRequest) {
+        var notificationTemplates = createNotificationTemplatesRequestToDomain.convert(createNotificationTemplatesRequest);
         var savedNotificationTemplates = createNotificationTemplatesUseCase.execute(notificationTemplates);
         return notificationTemplatesDomainToResponse.convert(savedNotificationTemplates);
     }
 
-    public NotificationTemplatesResponse update(String id, String name, String message) {
-        var retrieveNotificationTemplates = retrieveNotificationTemplatesByIdUseCase.execute(id);
-        var notificationTemplates = notificationTemplatesRequestToDomain.convert(id, name, message, retrieveNotificationTemplates.getCreatedAt());
+    public NotificationTemplatesResponse update(UpdateNotificationTemplatesRequest updateNotificationTemplatesRequest) {
+        var retrieveNotificationTemplates = retrieveNotificationTemplatesByIdUseCase.execute(updateNotificationTemplatesRequest.getId());
+        var notificationTemplates = updateNotificationTemplatesRequestToDomain.convert(updateNotificationTemplatesRequest, retrieveNotificationTemplates.getCreatedAt());
         var savedNotificationTemplates = createNotificationTemplatesUseCase.execute(notificationTemplates);
         return notificationTemplatesDomainToResponse.convert(savedNotificationTemplates);
     }

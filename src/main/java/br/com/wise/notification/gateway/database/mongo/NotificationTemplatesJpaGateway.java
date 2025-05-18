@@ -7,12 +7,10 @@ import br.com.wise.notification.gateway.database.mongo.converter.NotificationTem
 import br.com.wise.notification.gateway.database.mongo.repositories.NotificationTemplatesRepository;
 import br.com.wise.notification.infrastructure.controller.exception.BusinessException;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@Slf4j
 @Component
 @RequiredArgsConstructor
 public class NotificationTemplatesJpaGateway implements NotificationTemplatesGateway {
