@@ -26,7 +26,7 @@ public class NotificationsEntity {
     private String templateId;
 
     @Field("patient_id")
-    private String patientId;
+    private Long patientId;
 
     @Field("status")
     private StatusNotification status;

@@ -1,0 +1,22 @@
+enum DeliveryMethod {
+    WHATSAPP,
+    EMAIL,
+    SMS
+}
+
+input KeyValueRequest {
+    key: String!
+    value: String!
+}
+
+input NotificationRequest {
+    templateName: String!,
+    deliveryMethod: DeliveryMethod!,
+    patientId: Int!,
+    receiver: String!,
+    additionalInfo: [KeyValueRequest]
+}
+
+extend type Mutation {
+    sendNotification(notificationRequest: NotificationRequest!): Boolean
+}

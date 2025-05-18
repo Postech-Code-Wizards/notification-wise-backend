@@ -1,4 +1,4 @@
-package br.com.wise.notification.application.usecase;
+package br.com.wise.notification.application.usecase.notificationTemplates;
 
 import br.com.wise.notification.domain.NotificationTemplates;
 import br.com.wise.notification.gateway.database.NotificationTemplatesGateway;
@@ -7,11 +7,11 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class CreateNotificationTemplatesUseCase {
+public class RetrieveNotificationTemplatesByNameUseCase {
 
     private final NotificationTemplatesGateway notificationTemplatesGateway;
 
-    public NotificationTemplates execute (NotificationTemplates notificationTemplates) {
-        return notificationTemplatesGateway.save(notificationTemplates);
+    public NotificationTemplates execute(String name){
+        return notificationTemplatesGateway.findByName(name);
     }
 }

@@ -1,0 +1,19 @@
+type NotificationTemplatesResponse {
+    id: ID!
+    name: String!
+    message: String!
+    createdAt: String
+    updatedAt: String
+}
+
+extend type Query {
+    getNotificationTemplatesById(id: ID!): NotificationTemplatesResponse
+    getNotificationTemplatesByName(name: String!): NotificationTemplatesResponse
+    listAllNotificationTemplates: [NotificationTemplatesResponse]
+}
+
+extend type Mutation {
+    createNotificationTemplate(name: String!, message: String!): NotificationTemplatesResponse
+    updateNotificationTemplate(id: ID!, name: String!, message: String!): NotificationTemplatesResponse
+    deleteNotificationTemplate(id: ID!): Boolean
+}

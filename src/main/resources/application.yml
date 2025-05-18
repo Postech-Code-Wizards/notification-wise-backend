@@ -1,0 +1,19 @@
+server:
+  port: 8084
+spring:
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: myuser
+    password: mypassword
+  graphql:
+    graphiql:
+      enabled: true
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: admin
+      username: ${MONGO_ROOT_USERNAME:admin}
+      password: ${MONGO_ROOT_PASSWORD:password}
+      auto-index-creation: true

@@ -4,9 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.data.annotation.CreatedDate;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
@@ -22,17 +23,18 @@ public class NotificationTemplatesEntity {
     @Id
     private String id;
 
+    @Indexed(unique = true)
     @Field("name")
     private String name;
 
     @Field("message")
     private String message;
 
-    @CreatedDate
+    @CreationTimestamp
     @Field("created_at")
     private ZonedDateTime createdAt;
 
-    @LastModifiedDate
+    @UpdateTimestamp
     @Field("updated_at")
     private ZonedDateTime updatedAt;
 
