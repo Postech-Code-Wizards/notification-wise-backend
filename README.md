@@ -106,7 +106,7 @@ src/
 - **1. Clone the repository**  
   Clone the repository to your development environment:
     ```bash
-    git clone https://github.com/Postech-Code-Wizards/food-wise-backend.git
+    git clone https://github.com/Postech-Code-Wizards/notification-wise-backend
     ```
   In the terminal, navigate to the root of your project:
     ```bash
