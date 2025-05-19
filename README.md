@@ -46,13 +46,14 @@ This service aims to ensure that patients receive important information efficien
 
 ## 🛠️ Technologies Used
 
-- **Java**: Core programming language.
+- **Java JDK 21**: Core programming language.
 - **Spring Boot**: Framework for building microservices.
 - **Maven**: Dependency management and build tool.
 - **MongoDB**: Database for storing notification templates and logs.
 - **RabbitMQ**: Message broker for asynchronous communication.
 - **JUnit 5**: Testing framework.
 - **Instancio**: Library for generating test data.
+- **Docker**: Application containerization, MongoDB, RabbitMQ.
 
 ---
 
@@ -112,18 +113,10 @@ src/
     ```bash
     cd notification-wise-backend
     ```
+
   Run the project:
     ```bash
     docker-compose up -d --build
-    ```
-  Build the project:
-    ```bash
-    mvn clean install
-    ```
-  
-  Run the application:
-    ```bash
-    mvn spring-boot:run
     ```
   Access the API:
     - The application will be available at the URL: http://localhost:8084
