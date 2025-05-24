@@ -1,0 +1,25 @@
+server:
+  port: 8084
+spring:
+  rabbitmq:
+    host: rabbitmq
+    port: 5672
+    username: GRaPHerf
+    password: xcU204QDLk2@
+    listener:
+      simple:
+        retry:
+          enabled: true
+          max-attempts: 10
+          initial-interval: 3000
+  graphql:
+    graphiql:
+      enabled: true
+  data:
+    mongodb:
+      host: mongodb
+      port: 27017
+      database: admin
+      username: ${MONGO_ROOT_USERNAME:admin}
+      password: ${MONGO_ROOT_PASSWORD:password}
+      auto-index-creation: true
