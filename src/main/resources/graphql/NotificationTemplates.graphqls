@@ -1,0 +1,30 @@
+type NotificationTemplatesResponse {
+    id: ID!
+    name: String!
+    message: String!
+    createdAt: String
+    updatedAt: String
+}
+
+input CreateNotificationTemplatesRequest {
+    name: String!
+    message: String!
+}
+
+input UpdateNotificationTemplatesRequest {
+    id: ID!
+    name: String!
+    message: String!
+}
+
+extend type Query {
+    getNotificationTemplatesById(id: ID!): NotificationTemplatesResponse
+    getNotificationTemplatesByName(name: String!): NotificationTemplatesResponse
+    listAllNotificationTemplates: [NotificationTemplatesResponse]
+}
+
+extend type Mutation {
+    createNotificationTemplate(createNotificationTemplatesRequest: CreateNotificationTemplatesRequest!): NotificationTemplatesResponse
+    updateNotificationTemplate(updateNotificationTemplatesRequest: UpdateNotificationTemplatesRequest!): NotificationTemplatesResponse
+    deleteNotificationTemplate(id: ID!): Boolean
+}
