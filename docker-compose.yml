@@ -1,7 +1,7 @@
 version: '3.7'
 
 networks:
-  notification_wise_network:
+  wise_network:
     driver: "bridge"
 
 volumes:
@@ -18,7 +18,7 @@ services:
     ports:
       - "27017:27017"
     networks:
-      - notification_wise_network
+      - wise_network
     volumes:
       - mongo_data:/data/db
       - ./mongo-init/:/docker-entrypoint-initdb.d/:ro
@@ -34,7 +34,7 @@ services:
       - "5672:5672"
       - "15672:15672"
     networks:
-      - notification_wise_network
+      - wise_network
     volumes:
       - rabbitmq_data:/var/lib/rabbitmq
     environment:
@@ -55,4 +55,4 @@ services:
     ports:
       - "8084:8084"
     networks:
-      - notification_wise_network
+      - wise_network

@@ -26,4 +26,4 @@ WORKDIR /app
 COPY --from=build /app/target/*.jar /app/app.jar
 
 # Executa o JAR com o comando Java
-ENTRYPOINT ["java", "-jar", "/app/app.jar"]
+ENTRYPOINT ["sh", "-c", "sleep 10 && java -jar /app/app.jar"]
