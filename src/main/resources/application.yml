@@ -1,5 +1,3 @@
-server:
-  port: 8084
 spring:
   rabbitmq:
     host: rabbitmq
@@ -11,7 +9,7 @@ spring:
         retry:
           enabled: true
           max-attempts: 10
-          initial-interval: 3000
+          initial-interval: 6000
   graphql:
     graphiql:
       enabled: true
