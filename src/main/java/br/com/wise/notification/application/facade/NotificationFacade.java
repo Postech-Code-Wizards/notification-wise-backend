@@ -9,10 +9,12 @@ import br.com.wise.notification.domain.StreamMessage;
 import br.com.wise.notification.infrastructure.configurarion.NotificationConfig;
 import br.com.wise.notification.infrastructure.controller.dtos.request.NotificationRequest;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Service;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class NotificationFacade {
@@ -26,6 +28,14 @@ public class NotificationFacade {
     public boolean sendNotification(NotificationRequest notificationRequest){
         var notificationMessage = notificationRequestToDomain.convert(notificationRequest);
         return sendNotificationUseCase.execute(notificationMessage);
+    }
+
+    @RabbitListener(queues = {NotificationConfig.NOTIFICATION_QUEUE_NAME})
+    public void publishMessageNotification(@Payload NotificationRequest notificationRequest) {
+        log.info("[{}] Received general message: {}", this.getClass().getSimpleName(), notificationRequest.toString());
+        var notificationMessage = notificationRequestToDomain.convert(notificationRequest);
+        sendNotificationUseCase.execute(notificationMessage);
+        log.info("[{}] Published general message: {}", this.getClass().getSimpleName(), notificationRequest.toString());
     }
 
     @RabbitListener(queues = {NotificationConfig.EMAIL_QUEUE_NAME})

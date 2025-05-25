@@ -13,9 +13,11 @@ public class NotificationConfig {
     public static final String EMAIL_QUEUE_NAME = "notification_email_queue";
     public static final String SMS_QUEUE_NAME = "notification_sms_queue";
     public static final String WHATSAPP_QUEUE_NAME = "notification_whatsapp_queue";
+    public static final String NOTIFICATION_QUEUE_NAME = "notification_queue";
     public static final String EMAIL_ROUTING_KEY = "notification_email";
     public static final String SMS_ROUTING_KEY = "notification_sms";
     public static final String WHATSAPP_ROUTING_KEY = "notification_whatsapp";
+    public static final String NOTIFICATION_ROUTING_KEY = "notification";
 
     @Bean
     public Queue emailQueue() {
@@ -33,6 +35,11 @@ public class NotificationConfig {
     }
 
     @Bean
+    public Queue notificationQueue() {
+        return new Queue(NOTIFICATION_QUEUE_NAME, true);
+    }
+
+    @Bean
     public Binding emailBinding(Queue emailQueue, DirectExchange directExchange) {
         return BindingBuilder.bind(emailQueue).to(directExchange).with(EMAIL_ROUTING_KEY);
     }
@@ -45,6 +52,11 @@ public class NotificationConfig {
     @Bean
     public Binding whatsAppBinding(Queue whatsAppQueue, DirectExchange directExchange) {
         return BindingBuilder.bind(whatsAppQueue).to(directExchange).with(WHATSAPP_ROUTING_KEY);
+    }
+
+    @Bean
+    public Binding notificationBinding(Queue notificationQueue, DirectExchange directExchange) {
+        return BindingBuilder.bind(notificationQueue).to(directExchange).with(NOTIFICATION_ROUTING_KEY);
     }
 
 }

@@ -5,6 +5,7 @@ import java.util.Collections;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.util.List;
 import java.util.Map;
@@ -13,6 +14,7 @@ import java.util.stream.Collectors;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString(of = {"templateName", "deliveryMethod", "patientId", "recipient"})
 public class NotificationRequest {
     private String templateName;
     private DeliveryMethod deliveryMethod;
